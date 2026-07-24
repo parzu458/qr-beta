@@ -1,0 +1,127 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    background-color: #131316;
+    color: #EDEAE3;
+  }
+  h1, h2, h3, h4 {
+    font-family: 'Space Grotesk', sans-serif;
+    letter-spacing: -0.01em;
+  }
+  ::selection {
+    background-color: #00AEEF;
+    color: #131316;
+  }
+  *:focus-visible {
+    outline: 2px solid #00AEEF;
+    outline-offset: 2px;
+  }
+}
+
+/* ---- Surfaces (flat, print-proof panels — no blur/glass) ---- */
+.surface-panel {
+  background: #1b1b1f;
+  border: 1px solid #323238;
+}
+
+.surface-card {
+  background: #1b1b1f;
+  border: 1px solid #323238;
+  transition: border-color 150ms ease;
+}
+
+.surface-sunken {
+  background: #131316;
+  border: 1px solid #323238;
+}
+
+.field-input {
+  background: #131316;
+  border: 1px solid #323238;
+  color: #EDEAE3;
+}
+.field-input::placeholder {
+  color: #6f6d6a;
+}
+.field-input:focus {
+  border-color: #00AEEF;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(0, 174, 239, 0.15);
+}
+
+/* ---- Registration mark: signature motif borrowed from print production,
+   used to mark the corners of the primary artifact on the page. ---- */
+.reg-mark {
+  position: relative;
+}
+.reg-mark::before,
+.reg-mark::after {
+  content: '';
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  pointer-events: none;
+  background:
+    linear-gradient(#00AEEF, #00AEEF) center / 100% 1px no-repeat,
+    linear-gradient(#00AEEF, #00AEEF) center / 1px 100% no-repeat;
+  opacity: 0.55;
+}
+.reg-mark::before { top: -7px; left: -7px; }
+.reg-mark::after { bottom: -7px; right: -7px; }
+
+/* Dot-grid backdrop referencing QR module structure, used sparingly */
+.dot-field {
+  background-image: radial-gradient(rgba(237, 234, 227, 0.09) 1px, transparent 1px);
+  background-size: 18px 18px;
+}
+
+/* Hairline section divider, tech-panel style */
+.hairline {
+  background: linear-gradient(90deg, transparent, #323238 20%, #323238 80%, transparent);
+  height: 1px;
+}
+
+/* Tabular numerals for live-updating readouts (clock, counters) */
+.tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Live/active pulse in signal magenta instead of default emerald glow */
+.live-dot {
+  background-color: #E8407A;
+  box-shadow: 0 0 0 0 rgba(232, 64, 122, 0.6);
+  animation: live-pulse 2s infinite;
+}
+@keyframes live-pulse {
+  0% { box-shadow: 0 0 0 0 rgba(232, 64, 122, 0.5); }
+  70% { box-shadow: 0 0 0 6px rgba(232, 64, 122, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(232, 64, 122, 0); }
+}
+
+/* Simple fade-in for panel transitions */
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-in {
+  animation: fade-in 250ms ease-out;
+}
+
+/* Custom smooth scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #131316;
+}
+::-webkit-scrollbar-thumb {
+  background: #323238;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #454550;
+}
