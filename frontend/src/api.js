@@ -1,4 +1,5 @@
-const API_BASE = '/api';
+export const BACKEND_ORIGIN = 'https://qr-beta-xi.vercel.app';
+const API_BASE = `${BACKEND_ORIGIN}/api`;
 
 export async function fetchApi(endpoint, options = {}) {
   const token = localStorage.getItem('qr_tracker_token');
