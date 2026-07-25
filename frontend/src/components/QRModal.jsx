@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { api } from '../api';
+import { api, BACKEND_ORIGIN } from '../api';
 import { QRCustomizer } from './QRCustomizer';
 import { X, Globe, Type, Palette, Save, Sparkles, ShieldCheck } from 'lucide-react';
 
@@ -34,8 +34,8 @@ export const QRModal = ({ isOpen, onClose, qrToEdit, onSaved }) => {
   if (!isOpen) return null;
 
   const redirectPreviewUrl = qrToEdit
-    ? `${window.location.origin}/r/${qrToEdit.short_id}`
-    : `${window.location.origin}/r/preview`;
+    ? `${BACKEND_ORIGIN}/r/${qrToEdit.short_id}`
+    : `${BACKEND_ORIGIN}/r/preview`;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
