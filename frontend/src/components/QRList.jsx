@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import QRCode from 'qrcode';
+import { BACKEND_ORIGIN } from '../api';
 import {
   QrCode, ExternalLink, Copy, Check, BarChart2, Edit3, Trash2, Power, Search, Download, Sparkles, Eye
 } from 'lucide-react';
@@ -106,14 +107,14 @@ export const QRList = ({ qrCodes, onEdit, onSelectAnalytics, onToggleActive, onD
   });
 
   const handleCopyLink = (shortId, id) => {
-    const url = `${window.location.origin}/r/${shortId}`;
+    const url = `${BACKEND_ORIGIN}/r/${shortId}`;
     navigator.clipboard.writeText(url);
     setCopiedId(id);
     setTimeout(() => setCopiedId(null), 2000);
   };
 
   const handleDirectDownloadPNG = async (qr) => {
-    const redirectUrl = `${window.location.origin}/r/${qr.short_id}`;
+    const redirectUrl = `${BACKEND_ORIGIN}/r/${qr.short_id}`;
     try {
       const canvas = document.createElement('canvas');
       const size = 1024;
@@ -205,7 +206,7 @@ export const QRList = ({ qrCodes, onEdit, onSelectAnalytics, onToggleActive, onD
       {/* Responsive Grid of Cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {filteredQRs.map((qr) => {
-          const redirectUrl = `${window.location.origin}/r/${qr.short_id}`;
+          const redirectUrl = `${BACKEND_ORIGIN}/r/${qr.short_id}`;
           const isCopied = copiedId === qr.id;
 
           return (
